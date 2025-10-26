@@ -11,58 +11,124 @@ const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
 
   return (
-    <section className="flex items-center flex-col flex-grow pt-10">
-      <div className="px-5 flex flex-col gap-2 items-center">
-        <h1 className="text-center">
-          <span className="block text-base mb-2">Welcome to</span>
-          <span className="flex items-end gap-4 text-5xl font-bold">
-            <Logo size={48} /> Scaffold-Lisk{" "}
-          </span>
-        </h1>
-        <div className="flex btn btn-md bg-base-100 w-fit justify-center mb-4 items-center space-x-2">
-          <p className="my-2 font-medium">Connected Address:</p>
-          <Address address={connectedAddress} />
-        </div>
-        <p className="text-center text-base text-slate-400">
-          Get started by editing{" "}
-          <code className="italic bg-base-100 text-white p-1 rounded-md text-base font-bold max-w-full break-words break-all inline-block">
-            packages/nextjs/app/page.tsx
-          </code>
-        </p>
-        <p className="text-center text-base text-slate-400">
-          Edit your smart contract{" "}
-          <code className="italic bg-base-100 text-white p-1 rounded-md text-base font-bold max-w-full break-words break-all inline-block">
-            YourContract.sol
-          </code>{" "}
-          in{" "}
-          <code className="italic bg-base-100 text-white p-1 rounded-md text-base font-bold max-w-full break-words break-all inline-block">
-            packages/hardhat/contracts
-          </code>
-        </p>
+    <section className="relative min-h-screen bg-black overflow-hidden">
+      {/* Animated background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-sky-950/20 via-black to-sky-900/10"></div>
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-600/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-        <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-          <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-            <BugAntIcon className="h-8 w-8" />
-            <p>
-              Tinker with your smart contract using the{" "}
-              <Link href="/debug" passHref className="link">
-                Debug Contracts
-              </Link>{" "}
-              tab.
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+
+      <div className="relative z-10 flex items-center flex-col pt-20 px-5">
+        {/* Hero Section */}
+        <div className="flex flex-col gap-6 items-center mb-16">
+          <div className="relative">
+            <div className="absolute inset-0 bg-sky-500/20 blur-2xl rounded-full"></div>
+            <h1 className="relative text-center">
+              <span className="block text-sky-400 text-sm font-semibold tracking-widest uppercase mb-3">
+                Welcome to
+              </span>
+              <span className="flex items-center gap-4 text-6xl font-bold bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 bg-clip-text text-transparent">
+                <Logo size={56} /> Scaffold-Lisk
+              </span>
+            </h1>
+          </div>
+
+          {/* Connected Address Card */}
+          <div className="relative group">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-sky-600 to-sky-400 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+            <div className="relative flex items-center gap-3 bg-black border border-sky-500/30 rounded-2xl px-6 py-4 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-sky-400 rounded-full animate-pulse"></div>
+              <p className="text-sky-300 font-medium text-sm">Connected Address:</p>
+              <Address address={connectedAddress} />
+            </div>
+          </div>
+
+          {/* Code Instructions */}
+          <div className="max-w-2xl space-y-3">
+            <p className="text-center text-sky-400/70 leading-relaxed">
+              Get started by editing{" "}
+              <code className="bg-black/60 border border-sky-500/30 text-sky-300 px-2 py-1 rounded-lg text-sm font-mono">
+                packages/nextjs/app/page.tsx
+              </code>
+            </p>
+            <p className="text-center text-sky-400/70 leading-relaxed">
+              Edit your smart contract{" "}
+              <code className="bg-black/60 border border-sky-500/30 text-sky-300 px-2 py-1 rounded-lg text-sm font-mono">
+                YourContract.sol
+              </code>{" "}
+              in{" "}
+              <code className="bg-black/60 border border-sky-500/30 text-sky-300 px-2 py-1 rounded-lg text-sm font-mono">
+                packages/hardhat/contracts
+              </code>
             </p>
           </div>
-          <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-            <MagnifyingGlassIcon className="h-8 w-8" />
-            <p>
-              Explore your local transactions with the{" "}
-              <Link href="/blockexplorer" passHref className="link">
-                Block Explorer
-              </Link>{" "}
-              tab.
-            </p>
+        </div>
+
+        {/* Feature Cards Section */}
+        <div className="w-full max-w-7xl pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+            {/* Debug Contracts Card */}
+            <div className="group relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-sky-600 to-sky-400 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+              <div className="relative h-full bg-gradient-to-br from-sky-950/40 to-black border border-sky-500/20 rounded-3xl p-8 backdrop-blur-xl hover:border-sky-500/40 transition-all duration-300 hover:transform hover:scale-[1.02]">
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="w-16 h-16 bg-black/40 border border-sky-500/30 rounded-2xl flex items-center justify-center">
+                    <BugAntIcon className="h-8 w-8 text-sky-400" />
+                  </div>
+                  <p className="text-sky-300 leading-relaxed">
+                    Tinker with your smart contract using the{" "}
+                    <Link
+                      href="/debug"
+                      passHref
+                      className="text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors"
+                    >
+                      Debug Contracts
+                    </Link>{" "}
+                    tab.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Block Explorer Card */}
+            <div className="group relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-sky-400 to-sky-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+              <div className="relative h-full bg-gradient-to-br from-black to-sky-950/40 border border-sky-500/20 rounded-3xl p-8 backdrop-blur-xl hover:border-sky-500/40 transition-all duration-300 hover:transform hover:scale-[1.02]">
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="w-16 h-16 bg-black/40 border border-sky-500/30 rounded-2xl flex items-center justify-center">
+                    <MagnifyingGlassIcon className="h-8 w-8 text-sky-400" />
+                  </div>
+                  <p className="text-sky-300 leading-relaxed">
+                    Explore your local transactions with the{" "}
+                    <Link
+                      href="/blockexplorer"
+                      passHref
+                      className="text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors"
+                    >
+                      Block Explorer
+                    </Link>{" "}
+                    tab.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="pb-10 flex gap-2 opacity-30">
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              className="w-1 h-1 bg-sky-400 rounded-full animate-pulse"
+              style={{ animationDelay: `${i * 200}ms` }}
+            ></div>
+          ))}
         </div>
       </div>
     </section>
